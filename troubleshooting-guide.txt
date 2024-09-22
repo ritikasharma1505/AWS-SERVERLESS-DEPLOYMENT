@@ -1,4 +1,4 @@
-Do not give up if this seems messy, this is how you learn, make mistakes and find solutions (Google, chatGPT what servers you better..)
+Do not give up if this seems messy, this is how you learn, make mistakes and find solutions (Google, chatGPT what serves you better..)
 
 There were specific steps I messed up
 
@@ -9,7 +9,7 @@ CORS is enabled to your created resources in API gateway
 Re-Deploy API if any changes made specially after enabling CORS 
 Update 'scripts.js" where API_ENDPOINT variable is 'API invoke URL' 
 Lambda Existing Role, I created beforehand (Search IAM on Console Home > IAM Roles > Create Role > Usecase as Lambda > Attach policies like, AmazonDynamoDBFullAccess, AmazonAPIGatewayInvokeFullAccess,AWSLambdaBasicExecutionRole > Give Role name > Create)
-Allow Public access (By default: Block public access is enabled) and S3 bucket policy are need to be updated in case of direct hosting on S3 [not required in case of CloudFront integration]
+Allow Public access (By default: Block public access is enabled) and S3 bucket policy are required to be updated in case of direct hosting on S3 [not required in case of CloudFront integration]
 
 
 Hope this helps !!
