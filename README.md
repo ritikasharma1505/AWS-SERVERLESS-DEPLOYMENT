@@ -7,8 +7,8 @@ Configuring Amazon DynamoDB
 
 Configuring AWS Lambda
 - Create a function to fetch data 'getStudent' select runtime as Python 3.12
-- Change default execution role to "use an exisitng role" choose "lambdaDynamoDB-role"
-- Paste the code from "getStudents.py" (Make sure you have selected the right region name in the code as your AWS account region) and then deploy code, create test, give event name. Test code manually it should give empty list [], as expected the table values are empty and nothing to fetch
+- Change default execution role to "use an exisitng role" choose role if created 
+- Paste the code from "getStudents.py" and then deploy code, create test, give event name. Test code manually which will give empty list [], as expected the table values are empty and nothing to fetch
 
 - Create a function to post data 'insertStudentData' select runtime as Python 3.12, copy the code from "insertStudent.py", deploy code and then create test, give event name and values like and test the code manually it should give output as "status code 200 ok" "student data saved successfully"
 
@@ -23,17 +23,20 @@ Configuring AWS Lambda
 Configuring Amazon API Gateway
 - To Create a REST API 
 - Select API name
-- Choose API endpoint type "edge-optimized"
+- Choose API endpoint type "edge-optimized" or as you prefer
 - Create a method 'get' and select integration with Lambda and select Lambda Functions and region accordingly, similarly create another method 'post'
 - Create a 'new'stage like "PROD"
 - Enable CORS
 - Deploy API
-- Find and copy invoke URL: paste the URL in API_ENDPOINT of "Script.js"
+- Copy invoke URL: paste the URL in API_ENDPOINT of "Scripts.js"
 
 Configuring Amazon S3 bucket
 - Create a bucket
 - Enable Static website hosting from "properties" tab, give index document as "index.html"
-- Allow Public access and update the bucket policy from "permissions" tab, change here s3 bucket name with yours (In case without using CloudFront, CloudFront will incur charges, CloudFront is suggested for enhanced security, to eliminate public access to your bucket for security concerns)
+- Allow Public access and update the bucket policy from "permissions" tab. Checkout bucket policy for reference below
+- Upload "index.html" and "script.js" files etc.
+- Copy the Static website URL and hit it on the browser to view your hosted website !! 
+
 ```
 {
   "Id": "Policy1726929142972",
@@ -52,18 +55,19 @@ Configuring Amazon S3 bucket
 }
 ```
 
-- Upload "index.html" and "script.js" files
+
 
 Configuring CloudFront Distribution for enhanced security
 - Origin domain (select the S3 bucket)
-- Nmae will be auto-populated
+- Name gets auto-populated
 - Origin access - Select Legacy access identities or OAC - Create new OAI or OAC (This will act as a single cloudFront user access)
-- Select the update bucket policy
+- Tick the update bucket policy
 - WAF disabled
 - Select Price class 
 - Default root object as "index.html"
 - Click on create distribution
+- Copy the CloudFront Distribution domain name and hit it on the browser, once deployed, to view your hosted website (with cloudFront)
 
-- Copy the Static website URL and hit it on the browser to view your hosted website !! (without cloudFront)
-- Copy the CloudFront Distribution domain name and hit it on the browser once deployed  to view your hosted website (with cloudFront)
+
+** NOTE : Clean up/delete resources after you are done (Leaving, may incur charges)
   
